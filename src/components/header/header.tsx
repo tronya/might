@@ -9,10 +9,7 @@ export function Header() {
                 <Link to="/" className="item">Home</Link>
             </li>
             <li>
-                <Link to="/about" className="item">About</Link>
-            </li>
-            <li>
-                <Link to="/dashboard" className="item">Dashboard</Link>
+                <Link to="/stepper" className="item">stepper</Link>
             </li>
         </ul>
     )
