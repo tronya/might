@@ -8,24 +8,49 @@ import {
 import {Header} from "./components/header/header";
 import {Intro} from "./views/Intro/Intro";
 import StepperView from "./views/stepper/Stepper";
+import {createMuiTheme, makeStyles, ThemeProvider} from '@material-ui/core/styles';
+import {orange} from '@material-ui/core/colors';
+import {Box} from "@material-ui/core";
+
+const outerTheme = createMuiTheme({
+    palette: {
+        background: {
+            paper: '#2a2a3a'
+        },
+        text: {
+            primary: '#fff',
+            secondary: '#fff',
+        },
+        primary: {
+            main: '#2F80ED',
+            contrastText: '#fff',
+        },
+    },
+});
 
 function App() {
     return (
-        <div className="app">
-            <Router>
-                <Header/>
-                <div className="wrapper">
-                    <Switch>
-                        <Route exact path="/">
-                            <Intro/>
-                        </Route>
-                        <Route path="/stepper">
-                            <StepperView/>
-                        </Route>
-                    </Switch>
-                </div>
-            </Router>
-        </div>
+        <ThemeProvider theme={outerTheme}>
+            <Box
+                color="primary.contrastText"
+                bgcolor="background.paper"
+                p={{ xs: 2, sm: 3, md: 4 }}
+            >
+                <Router>
+                    <Header/>
+                    <div className="wrapper">
+                        <Switch>
+                            <Route exact path="/">
+                                <Intro/>
+                            </Route>
+                            <Route path="/stepper">
+                                <StepperView/>
+                            </Route>
+                        </Switch>
+                    </div>
+                </Router>
+            </Box>
+        </ThemeProvider>
     );
 }
 
