@@ -5,11 +5,9 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import {Header} from "./components/header/header";
 import {Intro} from "./views/Intro/Intro";
 import StepperView from "./views/stepper/Stepper";
 import {createMuiTheme, makeStyles, ThemeProvider} from '@material-ui/core/styles';
-import {orange} from '@material-ui/core/colors';
 import {Box} from "@material-ui/core";
 
 const outerTheme = createMuiTheme({
