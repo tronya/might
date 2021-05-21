@@ -34,11 +34,15 @@ function App() {
             <Box
                 color="primary.contrastText"
                 bgcolor="background.paper"
-                p={{ xs: 2, sm: 3, md: 4 }}
+                display="flex"
+                height='100%'
+                boxSizing='border-box'
+                p={{xs: 2, sm: 3, md: 4}}
             >
                 <Router>
-                    <Header/>
-                    <div className="wrapper">
+                    <Box
+                        className="wrapper"
+                    >
                         <Switch>
                             <Route exact path="/">
                                 <Intro/>
@@ -47,7 +51,7 @@ function App() {
                                 <StepperView/>
                             </Route>
                         </Switch>
-                    </div>
+                    </Box>
                 </Router>
             </Box>
         </ThemeProvider>

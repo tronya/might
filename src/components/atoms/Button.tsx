@@ -5,8 +5,9 @@ import Button from '@material-ui/core/Button';
 const useStyles = makeStyles({
     root: {
         borderRadius: 8,
-        padding: '10px 16px',
-        textTransform: "capitalize"
+        padding: '10px 2rem',
+        textTransform: "capitalize",
+        margin: '.5rem'
     },
 });
 
