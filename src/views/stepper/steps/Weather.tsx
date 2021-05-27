@@ -1,13 +1,13 @@
 import {
     Box,
     FormControl,
-    FormControlLabel, FormHelperText,
-    FormLabel,
+    FormHelperText,
+
     Input,
-    InputLabel, Radio,
-    RadioGroup, Typography
+    InputLabel,
+    Typography
 } from "@material-ui/core";
-import {Fragment, useState} from "react";
+import {Fragment} from "react";
 
 export function WeatherStep() {
     return (
@@ -15,7 +15,7 @@ export function WeatherStep() {
             <Box flexGrow='1'>
                 <Typography variant='h4'>Налаштування погоди</Typography>
             </Box>
-            <Typography variant="body2">Введіть параметри погоди для точної кореляції поправок, рекомендуємо вводити
+            <Typography color="textSecondary">Введіть параметри погоди для точної кореляції поправок, рекомендуємо вводити
                 параметри раз на годину або при значній зміні погодних умов.</Typography>
             <form action="">
                 <Box

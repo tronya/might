@@ -20,7 +20,7 @@ export function RifleStep() {
             <Box flexGrow='1'>
                 <Typography variant='h4'>Гвинтівка</Typography>
             </Box>
-            <Typography variant="body2">Додайте опис гвинтівки для коректного використання калькулятора.</Typography>
+            <Typography color="textSecondary">Додайте опис гвинтівки для коректного використання калькулятора.</Typography>
             <form action="">
                 <Box
                     display="flex"
@@ -37,7 +37,7 @@ export function RifleStep() {
 
                     <FormControl>
                         <InputLabel htmlFor="twist">Твіст:</InputLabel>
-                        <Input id="twist" aria-describedby="twist-text"/>
+                        <Input id="twist" aria-describedby="twist-text" color="secondary"/>
                     </FormControl>
                 </Box>
             </form>

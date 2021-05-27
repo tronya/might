@@ -1,9 +1,17 @@
 import Button from "@material-ui/core/Button";
 import CustomButton from "../../../components/atoms/Button";
-import React from "react";
 import './StepItem.scss'
 
-export function StepItem(props: any) {
+interface IStepItems {
+    children: any;
+    handleBack: () => void;
+    handleNext: () => void;
+    handleReset: () => void;
+    activeStep: number;
+    steps: any;
+}
+
+export function StepItem(props: IStepItems) {
     return (
         <div className="step">
             {props.children}

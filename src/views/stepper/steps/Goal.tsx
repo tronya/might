@@ -29,7 +29,7 @@ export function GoalStep() {
             <Box flexGrow='1'>
                 <Typography variant='h4'>Встановлення цілі</Typography>
             </Box>
-            <Typography variant="body2">Параметри цілі задаються максимально точно для точних поправок корегування
+            <Typography color="textSecondary">Параметри цілі задаються максимально точно для точних поправок корегування
                 вогню.</Typography>
             <form action="">
                 <Box

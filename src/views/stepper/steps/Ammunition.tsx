@@ -1,13 +1,13 @@
 import {
     Box,
     FormControl,
-    FormControlLabel, FormHelperText,
-    FormLabel,
+    FormHelperText,
+
     Input,
-    InputLabel, Radio,
-    RadioGroup, Typography
+    InputLabel,
+    Typography
 } from "@material-ui/core";
-import {Fragment, useState} from "react";
+import {Fragment} from "react";
 
 export function AmmunitionStep() {
     return (
@@ -15,7 +15,7 @@ export function AmmunitionStep() {
             <Box flexGrow='1'>
                 <Typography variant='h4'>Набій</Typography>
             </Box>
-            <Typography variant="body2">Параметри кулі необхідні для корегування роботи калькулятора та врахування
+            <Typography color="textSecondary">Параметри кулі необхідні для корегування роботи калькулятора та врахування
                 балістичного коефіціенту.</Typography>
             <form action="">
                 <Box

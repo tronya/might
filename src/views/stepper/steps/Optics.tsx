@@ -1,13 +1,12 @@
 import {
     Box,
     FormControl,
-    FormControlLabel, FormHelperText,
-    FormLabel,
+    FormHelperText,
     Input,
-    InputLabel, Radio,
-    RadioGroup, Typography
+    InputLabel,
+    Typography
 } from "@material-ui/core";
-import {Fragment, useState} from "react";
+import {Fragment} from "react";
 
 export function OpticsStep() {
     return (
@@ -15,7 +14,7 @@ export function OpticsStep() {
             <Box flexGrow='1'>
                 <Typography variant='h4'>Налаштування оптики</Typography>
             </Box>
-            <Typography variant="body2">Введення налаштувань для оптичного прицілу для коректного відображення
+            <Typography color="textSecondary">Введення налаштувань для оптичного прицілу для коректного відображення
                 параметрів введення в коректних одиницях.</Typography>
             <form action="">
                 <Box
