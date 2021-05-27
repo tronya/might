@@ -1,7 +1,7 @@
 import Button from "@material-ui/core/Button";
 import CustomButton from "../../../components/atoms/Button";
 import React from "react";
-import './stepItem.scss'
+import './StepItem.scss'
 
 export function StepItem(props: any) {
     return (

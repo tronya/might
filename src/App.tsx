@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import {Intro} from "./views/Intro/Intro";
 import StepperView from "./views/stepper/Stepper";
-import {createMuiTheme, makeStyles, ThemeProvider} from '@material-ui/core/styles';
+import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 import {Box} from "@material-ui/core";
 
 const outerTheme = createMuiTheme({

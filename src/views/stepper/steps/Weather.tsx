@@ -9,14 +9,14 @@ import {
 } from "@material-ui/core";
 import {Fragment, useState} from "react";
 
-export function AmmunitionStep() {
+export function WeatherStep() {
     return (
         <Fragment>
             <Box flexGrow='1'>
-                <Typography variant='h4'>Набій</Typography>
+                <Typography variant='h4'>Налаштування погоди</Typography>
             </Box>
-            <Typography variant="body2">Параметри кулі необхідні для корегування роботи калькулятора та врахування
-                балістичного коефіціенту.</Typography>
+            <Typography variant="body2">Введіть параметри погоди для точної кореляції поправок, рекомендуємо вводити
+                параметри раз на годину або при значній зміні погодних умов.</Typography>
             <form action="">
                 <Box
                     display="flex"
@@ -31,21 +31,17 @@ export function AmmunitionStep() {
                         />
                     </FormControl>
                     <FormControl>
-                        <InputLabel htmlFor="speed">Швидкість:</InputLabel>
+                        <InputLabel htmlFor="speed">Температура:</InputLabel>
                         <Input id="speed" aria-describedby="" placeholder="800"/>
                         <FormHelperText>м/с</FormHelperText>
                     </FormControl>
                     <FormControl>
-                        <InputLabel htmlFor="weight">Вага:</InputLabel>
+                        <InputLabel htmlFor="weight">Вологість:</InputLabel>
                         <Input id="weight" aria-describedby="" placeholder="195"/>
                         <FormHelperText>грейн</FormHelperText>
                     </FormControl>
                     <FormControl>
-                        <InputLabel htmlFor="caliber">Калібр:</InputLabel>
-                        <Input id="caliber" aria-describedby="" placeholder="7.62x39"/>
-                    </FormControl>
-                    <FormControl>
-                        <InputLabel htmlFor="caliber">Балістичний коефіціент::</InputLabel>
+                        <InputLabel htmlFor="caliber">Тиск:</InputLabel>
                         <Input id="caliber" aria-describedby="" placeholder="7.62x39"/>
                     </FormControl>
                 </Box>

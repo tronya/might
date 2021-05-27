@@ -1,11 +1,10 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import {StepperEnum} from "../../models/stepper.enum";
-import {RifleStep} from "./steps/rifle";
+import {RifleStep} from "./steps/Rifle";
+import {AmmunitionStep} from "./steps/Ammunition";
+import {OpticsStep} from "./steps/Optics";
+import {WeatherStep} from "./steps/Weather";
+import {GoalStep} from "./steps/Goal";
 import {StepItem} from "./stepItem/StepItem";
-import {AmmunitionStep} from "./steps/ammunition";
 
 function getSteps() {
     return ['Гвинтівка', 'Набій', 'Налаштування оптики', "Налаштування погоди", "Встановлення цілі"];
@@ -18,11 +17,11 @@ function getStepContent(stepIndex: number) {
         case 1:
             return <AmmunitionStep/>;
         case 2:
-            return StepperEnum.optics;
+            return <OpticsStep/>;
         case 3:
-            return StepperEnum.weather;
+            return <WeatherStep/>;
         case 4:
-            return StepperEnum.goal;
+            return <GoalStep/>;
         default:
             return 'Unknown stepIndex';
     }
