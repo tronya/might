@@ -5,8 +5,6 @@ import {OpticsStep} from "./steps/Optics";
 import {WeatherStep} from "./steps/Weather";
 import {GoalStep} from "./steps/Goal";
 import {StepItem} from "./stepItem/StepItem";
-import {useSelector} from "react-redux";
-import {IState} from "../../store/state";
 
 function getSteps() {
     return ['Гвинтівка', 'Набій', 'Налаштування оптики', "Налаштування погоди", "Встановлення цілі"];
