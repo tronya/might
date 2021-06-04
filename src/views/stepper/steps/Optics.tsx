@@ -1,50 +1,64 @@
-import {
-    Box,
-    FormControl,
-    FormHelperText,
-    Input,
-    InputLabel,
-    Typography
-} from "@material-ui/core";
-import {Fragment} from "react";
+import {Field, Form} from 'react-final-form'
+import {StepperButtons} from "../stepperButtons/StepperButtons";
+import {useDispatch, useSelector} from "react-redux";
+import {useHistory} from "react-router-dom";
+import {IAction, SAVE_FORM_VALUES} from "../../../store/reducer/formReducer";
+import {IState} from "../../../store/state";
+import {MightInput} from "../../../components/atoms/MightInput";
 
 export function OpticsStep() {
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const onSubmit = (values: any) => {
+        dispatch<IAction>({type: SAVE_FORM_VALUES, payload: values})
+        history.push(`/table`)
+    }
+
+    const formValues: any = useSelector((state: IState) => state.userForm);
     return (
-        <Fragment>
-            <Box flexGrow='1'>
-                <Typography variant='h4'>Налаштування оптики</Typography>
-            </Box>
-            <Typography color="textSecondary">Введення налаштувань для оптичного прицілу для коректного відображення
-                параметрів введення в коректних одиницях.</Typography>
-            <form action="">
-                <Box
-                    display="flex"
-                    flexDirection="column"
-                    padding="50px 0"
-                >
-                    <FormControl>
-                        <InputLabel htmlFor="length">Дистанція пристрілки:</InputLabel>
-                        <Input id="length"
-                               aria-describedby="twist-text"
-                               placeholder="180"
-                        />
-                    </FormControl>
-                    <FormControl>
-                        <InputLabel htmlFor="speed">Висота прицілу над стволом:</InputLabel>
-                        <Input id="speed" aria-describedby="" placeholder="180"/>
-                        <FormHelperText>м/с</FormHelperText>
-                    </FormControl>
-                    <FormControl>
-                        <InputLabel htmlFor="weight">Вертикальний крок:</InputLabel>
-                        <Input id="weight" aria-describedby="" placeholder="185"/>
-                        <FormHelperText>грейн</FormHelperText>
-                    </FormControl>
-                    <FormControl>
-                        <InputLabel htmlFor="caliber">Горизонтальний крок:</InputLabel>
-                        <Input id="caliber" aria-describedby="" placeholder="180"/>
-                    </FormControl>
-                </Box>
-            </form>
-        </Fragment>
+        <Form
+            onSubmit={onSubmit}
+            initialValues={formValues}
+            render={props => (
+                <form onSubmit={props.handleSubmit} noValidate autoComplete="off">
+                    <Field
+                        name="distance"
+                        variant="outlined"
+                        color="secondary"
+                        label="Дистанція пристрілки:"
+                        placeholder="метрів"
+                        component={MightInput}
+                    />
+
+                    <Field
+                        name="height_above_thunk"
+                        variant="outlined"
+                        color="secondary"
+                        label="Висота прицілу над стволом:"
+                        placeholder="мм"
+                        component={MightInput}
+                    />
+
+                    <Field
+                        name="vertical_step"
+                        variant="outlined"
+                        color="secondary"
+                        label="Вертикальний крок:"
+                        placeholder="грейн"
+                        component={MightInput}
+                    />
+
+                    <Field
+                        name="horizontal_step"
+                        variant="outlined"
+                        color="secondary"
+                        label="Горизонтальний крок:"
+                        component={MightInput}
+                    />
+
+                    <StepperButtons disabled={props.valid}/>
+                </form>
+            )}/>
     )
 }

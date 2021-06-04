@@ -1,37 +1,23 @@
-import Button from "@material-ui/core/Button";
-import CustomButton from "../../../components/atoms/Button";
 import './StepItem.scss'
+import React from "react";
+import {Box, Typography} from "@material-ui/core";
+import {StepContent} from "../../../models/step.model";
 
-interface IStepItems {
-    children: any;
-    handleBack: () => void;
-    handleNext: () => void;
-    handleReset: () => void;
-    activeStep: number;
-    steps: any;
-}
+export function StepItem({title, description, content}: StepContent) {
 
-export function StepItem(props: IStepItems) {
     return (
         <div className="step">
-            {props.children}
-            <div className="step__buttons">
-                <Button
-                    className="step__button"
-                    disabled={props.activeStep === 0}
-                    onClick={props.handleBack}
-                >
-                    Відмінити
-                </Button>
-                <CustomButton
-                    className="step__button"
-                    variant="contained"
-                    color="primary"
-                    onClick={props.handleNext}
-                >
-                    {props.activeStep === props.steps.length - 1 ? 'Завершити' : 'Ввести'}
-                </CustomButton>
-            </div>
+            <Box flexGrow='1'>
+                <Typography variant='h4'>{title}</Typography>
+            </Box>
+            <Typography color="textSecondary">{description}</Typography>
+            <Box
+                display="flex"
+                flexDirection="column"
+                paddingTop="2rem"
+            >
+                {content}
+            </Box>
         </div>
     )
 }

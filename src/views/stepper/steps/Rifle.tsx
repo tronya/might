@@ -1,12 +1,11 @@
-import {
-    Box,
-    Grid,
-    Typography
-} from "@material-ui/core";
-import {Fragment, useState} from "react";
+import {Grid} from "@material-ui/core";
 import {Form, Field} from 'react-final-form'
-import Button from "@material-ui/core/Button";
 import {MightInput} from "../../../components/atoms/MightInput";
+import {useDispatch, useSelector} from "react-redux";
+import {IAction, SAVE_FORM_VALUES} from "../../../store/reducer/formReducer";
+import {StepperButtons} from "../stepperButtons/StepperButtons";
+import { useHistory } from "react-router-dom";
+import {IState} from "../../../store/state";
 
 const validate = (values: { direction: string; twist: string; }) => {
     const errors: { direction: string | undefined, twist: string | undefined } = {
@@ -22,79 +21,63 @@ const validate = (values: { direction: string; twist: string; }) => {
     return errors;
 };
 
-export function RifleStep() {
+export const RifleStep = () => {
+    const dispatch = useDispatch()
+    const history = useHistory();
+
     const onSubmit = (values: any) => {
-        console.log(values);
+        dispatch<IAction>({type: SAVE_FORM_VALUES, payload: values})
+        history.push(`/stepper/charge`)
     }
 
+    const formValues:any = useSelector((state: IState) => state.userForm);
+
     return (
-        <Fragment>
-            <Box flexGrow='1'>
-                <Typography variant='h4'>Гвинтівка</Typography>
-            </Box>
-            <Typography color="textSecondary">Додайте опис гвинтівки для коректного використання
-                калькулятора.</Typography>
-            <Box
-                display="flex"
-                flexDirection="column"
-                padding="50px 0"
-            >
-                <Form
-                    onSubmit={onSubmit}
-                    validate={validate}
-                    // initialValues={{direction: 'left', twist: 200}}
-                    render={props => (
-                        <form onSubmit={props.handleSubmit} noValidate autoComplete="off">
-                            <Grid container alignItems="flex-start" spacing={0}>
-                                <Field
-                                    name="twist"
-                                    variant="outlined"
-                                    color="secondary"
-                                    label="Twist"
-                                    placeholder=""
-                                    required
-                                    component={MightInput}
-                                />
+        <Form
+            onSubmit={onSubmit}
+            validate={validate}
+            initialValues={formValues}
+            render={props => (
+                <form onSubmit={props.handleSubmit} noValidate autoComplete="off">
+                    <Grid container alignItems="flex-start" spacing={0}>
+                        <Field
+                            name="twist"
+                            variant="outlined"
+                            color="secondary"
+                            label="Twist"
+                            placeholder=""
+                            required
+                            component={MightInput}
+                        />
 
-                                <Field
-                                    name="direction"
-                                    variant="outlined"
-                                    color="secondary"
-                                    component={MightInput}
-                                    label="Direction"
-                                    placeholder=""
-                                />
-                            </Grid>
-                            {/*<FormControl component="fieldset">*/}
-                            {/*    <FormLabel component="legend">Нарізки:</FormLabel>*/}
-                            {/*    <RadioGroup name="direction" value={value} onChange={handleChange}>*/}
-                            {/*        <FormControlLabel value="left" control={<Radio/>} label="Ліві"/>*/}
-                            {/*        <FormControlLabel value="right" control={<Radio/>} label="Праві"/>*/}
-                            {/*    </RadioGroup>*/}
-                            {/*</FormControl>*/}
+                        <Field
+                            name="direction"
+                            variant="outlined"
+                            color="secondary"
+                            component={MightInput}
+                            label="Direction"
+                            placeholder=""
+                        />
+                    </Grid>
+                    {/*<FormControl component="fieldset">*/}
+                    {/*    <FormLabel component="legend">Нарізки:</FormLabel>*/}
+                    {/*    <RadioGroup name="direction" value={value} onChange={handleChange}>*/}
+                    {/*        <FormControlLabel value="left" control={<Radio/>} label="Ліві"/>*/}
+                    {/*        <FormControlLabel value="right" control={<Radio/>} label="Праві"/>*/}
+                    {/*    </RadioGroup>*/}
+                    {/*</FormControl>*/}
 
-                            {/*<FormControl>*/}
-                            {/*    <TextField*/}
-                            {/*        id="twist"*/}
-                            {/*        label="Outlined secondary"*/}
-                            {/*        variant="outlined"*/}
-                            {/*        color="secondary"*/}
-                            {/*    />*/}
-                            {/*</FormControl>*/}
-                            <Grid item style={{marginTop: 16}}>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    type="submit"
-                                    disabled={props.submitting}
-                                >
-                                    Submit
-                                </Button>
-                            </Grid>
-                        </form>
-                    )}
-                />
-            </Box>
-        </Fragment>
+                    {/*<FormControl>*/}
+                    {/*    <TextField*/}
+                    {/*        id="twist"*/}
+                    {/*        label="Outlined secondary"*/}
+                    {/*        variant="outlined"*/}
+                    {/*        color="secondary"*/}
+                    {/*    />*/}
+                    {/*</FormControl>*/}
+                    <StepperButtons disabled={props.valid}/>
+                </form>
+            )}
+        />
     )
 }

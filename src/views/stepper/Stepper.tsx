@@ -1,57 +1,56 @@
 import React from 'react';
 import {RifleStep} from "./steps/Rifle";
+import {StepItem} from "./stepItem/StepItem";
+import {useParams} from "react-router-dom";
+import {StepperEnum} from "../../models/stepper.enum";
 import {AmmunitionStep} from "./steps/Ammunition";
 import {OpticsStep} from "./steps/Optics";
-import {WeatherStep} from "./steps/Weather";
-import {GoalStep} from "./steps/Goal";
-import {StepItem} from "./stepItem/StepItem";
 
-function getSteps() {
-    return ['Гвинтівка', 'Набій', 'Налаштування оптики', "Налаштування погоди", "Встановлення цілі"];
-}
 
 function getStepContent(stepIndex: number) {
     switch (stepIndex) {
         case 0:
-            return <RifleStep/>;
+            return {
+                title: "Гвинтівка",
+                description: "Додайте опис гвинтівки для коректного використання калькулятора.",
+                content: <RifleStep/>
+            };
         case 1:
-            return <AmmunitionStep/>;
+            return {
+                title: "Набій",
+                description: "Параметри кулі необхідні для корегування роботи калькулятора та врахування балістичного коефіціенту.",
+                content: <AmmunitionStep/>
+            };
         case 2:
-            return <OpticsStep/>;
-        case 3:
-            return <WeatherStep/>;
-        case 4:
-            return <GoalStep/>;
+            return {
+                title: "Налаштування оптики",
+                description: "Введення налаштувань для оптичного прицілу для коректного відображення параметрів введення в коректних одиницях.",
+                content: <OpticsStep/>
+            };
+        // case 2:
+        //     return <OpticsStep/>;
+        // case 3:
+        //     return <WeatherStep/>;
+        // case 4:
+        //     return <GoalStep/>;
         default:
-            return 'Unknown stepIndex';
+            return {
+                title: "",
+                description: "",
+                content: null
+            };
     }
 }
 
 export default function StepperView() {
-    const [activeStep, setActiveStep] = React.useState(0);
-    const steps = getSteps();
-
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
-
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
-
-    const handleReset = () => {
-        setActiveStep(0);
-    };
+    let {id} = useParams<{ id: string }>();
+    const activeStep: number = Number(Object.keys(StepperEnum)[Object.values(StepperEnum).indexOf(id)]);
 
     return (
         <StepItem
-            activeStep={activeStep}
-            steps={steps}
-            handleNext={handleNext}
-            handleBack={handleBack}
-            handleReset={handleReset}
-        >
-            {getStepContent(activeStep)}
-        </StepItem>
+            title={getStepContent(activeStep).title}
+            description={getStepContent(activeStep).description}
+            content={getStepContent(activeStep).content}
+        />
     )
 }

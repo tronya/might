@@ -1,3 +1,5 @@
 export interface IState {
-    todo: number[]
+    userForm: number[];
+    stepper: number;
+    table: []
 }

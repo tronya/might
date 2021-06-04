@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 export function Intro() {
     return (
-        <Link to="stepper">
+        <Link to="stepper/rifle">
             <Button variant="contained" color="primary">
                 Hello World
             </Button>

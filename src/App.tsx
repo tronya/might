@@ -14,14 +14,20 @@ import {applyMiddleware, createStore} from "redux";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 import reducers from './store/reducer';
+import {TableView} from "./views/table/Table";
 
 const store = createStore(
     reducers,
     composeWithDevTools(
         applyMiddleware(thunk),
-    ));
+    ),
+);
 
 function App() {
+    store.subscribe(() => {
+        localStorage.setItem('store', JSON.stringify(store.getState()));
+    });
+
     return (
         <Provider store={store}>
             <Box
@@ -39,8 +45,11 @@ function App() {
                             <Route exact path="/">
                                 <Intro/>
                             </Route>
-                            <Route path="/stepper">
+                            <Route path="/stepper/:id">
                                 <StepperView/>
+                            </Route>
+                            <Route path="/table">
+                                <TableView/>
                             </Route>
                         </Switch>
                     </Box>

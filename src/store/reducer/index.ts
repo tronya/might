@@ -1,6 +1,10 @@
-import {todosReducer} from './todo';
+import {userFormReducer} from './formReducer';
 import {combineReducers} from "redux";
+import {stepperReducer} from "./stepper";
+import {tableReducer} from "./tableReducer";
 
 export default combineReducers({
-    todo: todosReducer,
+    userForm: userFormReducer,
+    stepper: stepperReducer,
+    table: tableReducer,
 });
