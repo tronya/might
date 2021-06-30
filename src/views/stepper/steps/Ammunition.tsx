@@ -6,6 +6,7 @@ import {StepperButtons} from "../stepperButtons/StepperButtons";
 import {MightInput} from "../../../components/atoms/MightInput";
 import {useHistory} from "react-router-dom";
 import {IState} from "../../../store/state";
+import {MenuItem, Select} from "@material-ui/core";
 
 export function AmmunitionStep() {
     const dispatch = useDispatch();
@@ -58,6 +59,19 @@ export function AmmunitionStep() {
                         label="Калібр:"
                         placeholder="7.62x39"
                     />
+
+                    <Select
+                        onChange={r => console.log(r)}
+                        displayEmpty
+                        inputProps={{ 'aria-label': 'Without label' }}
+                    >
+                        <MenuItem value="">
+                            <em>None</em>
+                        </MenuItem>
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                    </Select>
 
                     <Field
                         name="ballistics"

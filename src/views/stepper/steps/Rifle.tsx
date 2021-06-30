@@ -4,8 +4,9 @@ import {MightInput} from "../../../components/atoms/MightInput";
 import {useDispatch, useSelector} from "react-redux";
 import {IAction, SAVE_FORM_VALUES} from "../../../store/reducer/formReducer";
 import {StepperButtons} from "../stepperButtons/StepperButtons";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {IState} from "../../../store/state";
+import {MightRadioButton} from "../../../components/atoms/MightRadioButton";
 
 const validate = (values: { direction: string; twist: string; }) => {
     const errors: { direction: string | undefined, twist: string | undefined } = {
@@ -30,7 +31,9 @@ export const RifleStep = () => {
         history.push(`/stepper/charge`)
     }
 
-    const formValues:any = useSelector((state: IState) => state.userForm);
+    const onDiscard = () => history.push(`/`)
+
+    const formValues: any = useSelector((state: IState) => state.userForm);
 
     return (
         <Form
@@ -41,41 +44,29 @@ export const RifleStep = () => {
                 <form onSubmit={props.handleSubmit} noValidate autoComplete="off">
                     <Grid container alignItems="flex-start" spacing={0}>
                         <Field
-                            name="twist"
-                            variant="outlined"
-                            color="secondary"
-                            label="Twist"
-                            placeholder=""
-                            required
-                            component={MightInput}
-                        />
-
-                        <Field
                             name="direction"
                             variant="outlined"
                             color="secondary"
-                            component={MightInput}
-                            label="Direction"
+                            component={MightRadioButton}
+                            label="Нарізи:"
                             placeholder=""
+                            type="radio"
+                            options={[
+                                {label: 'Ліво', value: 'left'},
+                                {label: 'Право', value: 'right'},
+                            ]}
                         />
                     </Grid>
-                    {/*<FormControl component="fieldset">*/}
-                    {/*    <FormLabel component="legend">Нарізки:</FormLabel>*/}
-                    {/*    <RadioGroup name="direction" value={value} onChange={handleChange}>*/}
-                    {/*        <FormControlLabel value="left" control={<Radio/>} label="Ліві"/>*/}
-                    {/*        <FormControlLabel value="right" control={<Radio/>} label="Праві"/>*/}
-                    {/*    </RadioGroup>*/}
-                    {/*</FormControl>*/}
-
-                    {/*<FormControl>*/}
-                    {/*    <TextField*/}
-                    {/*        id="twist"*/}
-                    {/*        label="Outlined secondary"*/}
-                    {/*        variant="outlined"*/}
-                    {/*        color="secondary"*/}
-                    {/*    />*/}
-                    {/*</FormControl>*/}
-                    <StepperButtons disabled={props.valid}/>
+                    <Field
+                        name="twist"
+                        variant="outlined"
+                        color="secondary"
+                        label="Твіст"
+                        placeholder=""
+                        required
+                        component={MightInput}
+                    />
+                    <StepperButtons disabled={props.valid} onDiscard={onDiscard}/>
                 </form>
             )}
         />
