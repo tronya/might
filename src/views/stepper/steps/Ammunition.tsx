@@ -1,4 +1,3 @@
-
 import {Field, Form} from 'react-final-form'
 import {useDispatch, useSelector} from "react-redux";
 import {IAction, SAVE_FORM_VALUES} from "../../../store/reducer/formReducer";
@@ -7,6 +6,7 @@ import {MightInput} from "../../../components/atoms/MightInput";
 import {useHistory} from "react-router-dom";
 import {IState} from "../../../store/state";
 import {MenuItem, Select} from "@material-ui/core";
+import {MightSelect} from "../../../components/atoms/MightSelectBox";
 
 export function AmmunitionStep() {
     const dispatch = useDispatch();
@@ -55,23 +55,15 @@ export function AmmunitionStep() {
                         name="caliber"
                         variant="outlined"
                         color="secondary"
-                        component={MightInput}
+                        component={MightSelect}
                         label="Калібр:"
-                        placeholder="7.62x39"
+                        options={[
+                            {value: '308', label: '.308'},
+                            {value: '221', label: '.22lr'},
+                            {value: '223', label: '.223 rem'},
+                            {value: '7.62', label: '7,62x39mm'},
+                        ]}
                     />
-
-                    <Select
-                        onChange={r => console.log(r)}
-                        displayEmpty
-                        inputProps={{ 'aria-label': 'Without label' }}
-                    >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
 
                     <Field
                         name="ballistics"

@@ -31,8 +31,6 @@ export const RifleStep = () => {
         history.push(`/stepper/charge`)
     }
 
-    const onDiscard = () => history.push(`/`)
-
     const formValues: any = useSelector((state: IState) => state.userForm);
 
     return (
@@ -50,7 +48,6 @@ export const RifleStep = () => {
                             component={MightRadioButton}
                             label="Нарізи:"
                             placeholder=""
-                            type="radio"
                             options={[
                                 {label: 'Ліво', value: 'left'},
                                 {label: 'Право', value: 'right'},
@@ -66,7 +63,7 @@ export const RifleStep = () => {
                         required
                         component={MightInput}
                     />
-                    <StepperButtons disabled={props.valid} onDiscard={onDiscard}/>
+                    <StepperButtons disabled={props.valid}/>
                 </form>
             )}
         />

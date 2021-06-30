@@ -1,16 +1,14 @@
-import {
-    FormControl,
-    FormControlLabel,
-    FormLabel,
-    Radio,
-    RadioGroup, RadioGroupProps,
-} from "@material-ui/core";
+import {FormControl, FormLabel, InputLabel, MenuItem, Select} from "@material-ui/core";
 import {showErrorOnChange} from "./utils";
 import {FieldRenderProps} from "react-final-form";
 
-type RadioGroupWrapperProps = FieldRenderProps<RadioGroupProps, HTMLElement>;
-export const MightRadioButton = (props: RadioGroupWrapperProps) => {
-    console.log(props);
+interface IOptions {
+    label: string;
+    value: string
+}
+
+type SelectProps = FieldRenderProps<SelectProps, HTMLElement>;
+export const MightSelect = (props: SelectProps) => {
     const {
         input: {name, value, onChange},
         meta,
@@ -18,12 +16,14 @@ export const MightRadioButton = (props: RadioGroupWrapperProps) => {
         required,
         fullWidth = true,
         helperText,
-        defaultValue,
+        defaultValue = {label: 'None', value: ""},
         showError = showErrorOnChange,
         label,
-        options,
+        options = [],
         ...rest
     } = props;
+
+    const mergedValue: IOptions[] = [defaultValue, ...options]
 
     const isError = showError({meta});
     return (
@@ -31,26 +31,25 @@ export const MightRadioButton = (props: RadioGroupWrapperProps) => {
             component="fieldset"
             fullWidth={fullWidth}
             style={{marginTop: 8, marginBottom: 8}}>
-            <FormLabel component="legend">{label}</FormLabel>
+
+            <InputLabel>{label}</InputLabel>
+
             {isError}
-            <RadioGroup
+
+            <Select
                 name={name}
-                defaultValue={defaultValue}
                 value={value}
+                displayEmpty
                 onChange={onChange}
+                required={required}
                 {...rest}>
                 {
-                    options.map(
+                    mergedValue.map(
                         ({label, value}: { label: string; value: string }) =>
-                            <FormControlLabel
-                                key={label}
-                                value={value}
-                                control={<Radio/>}
-                                label={label}
-                            />
+                            <MenuItem key={label} value={value}>{label}</MenuItem>
                     )
                 }
-            </RadioGroup>
+            </Select>
         </FormControl>
     )
 }

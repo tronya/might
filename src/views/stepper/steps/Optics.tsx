@@ -5,6 +5,7 @@ import {useHistory} from "react-router-dom";
 import {IAction, SAVE_FORM_VALUES} from "../../../store/reducer/formReducer";
 import {IState} from "../../../store/state";
 import {MightInput} from "../../../components/atoms/MightInput";
+import {MightSelect} from "../../../components/atoms/MightSelectBox";
 
 export function OpticsStep() {
     const dispatch = useDispatch();
@@ -36,7 +37,7 @@ export function OpticsStep() {
                         variant="outlined"
                         color="secondary"
                         label="Висота прицілу над стволом:"
-                        placeholder="мм"
+                        placeholder="см"
                         component={MightInput}
                     />
 
@@ -45,8 +46,12 @@ export function OpticsStep() {
                         variant="outlined"
                         color="secondary"
                         label="Вертикальний крок:"
-                        placeholder="грейн"
-                        component={MightInput}
+                        component={MightSelect}
+                        required
+                        options={[
+                            {value: 'mil', label: 'mil'},
+                            {value: 'moa', label: 'moa'},
+                        ]}
                     />
 
                     <Field
@@ -54,7 +59,12 @@ export function OpticsStep() {
                         variant="outlined"
                         color="secondary"
                         label="Горизонтальний крок:"
-                        component={MightInput}
+                        component={MightSelect}
+                        required
+                        options={[
+                            {value: 'mil', label: 'mil'},
+                            {value: 'moa', label: 'moa'},
+                        ]}
                     />
 
                     <StepperButtons disabled={props.valid}/>
