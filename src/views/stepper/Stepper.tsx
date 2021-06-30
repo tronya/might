@@ -11,7 +11,7 @@ function getStepContent(stepIndex: number) {
     switch (stepIndex) {
         case 0:
             return {
-                title: "Гвинтівка",
+                title: "Гвинтівка 2",
                 description: "Додайте опис гвинтівки для коректного використання калькулятора.",
                 content: <RifleStep/>
             };

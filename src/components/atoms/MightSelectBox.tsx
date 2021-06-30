@@ -1,4 +1,4 @@
-import {FormControl, FormLabel, InputLabel, MenuItem, Select} from "@material-ui/core";
+import {FormControl, InputLabel, MenuItem, Select} from "@material-ui/core";
 import {showErrorOnChange} from "./utils";
 import {FieldRenderProps} from "react-final-form";
 

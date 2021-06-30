@@ -5,7 +5,6 @@ import {StepperButtons} from "../stepperButtons/StepperButtons";
 import {MightInput} from "../../../components/atoms/MightInput";
 import {useHistory} from "react-router-dom";
 import {IState} from "../../../store/state";
-import {MenuItem, Select} from "@material-ui/core";
 import {MightSelect} from "../../../components/atoms/MightSelectBox";
 
 export function AmmunitionStep() {
