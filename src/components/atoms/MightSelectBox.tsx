@@ -1,4 +1,4 @@
-import {FormControl, InputLabel, MenuItem, Select} from "@material-ui/core";
+import {createStyles, FormControl, InputLabel, makeStyles, MenuItem, Select, Theme} from "@material-ui/core";
 import {showErrorOnChange} from "./utils";
 import {FieldRenderProps} from "react-final-form";
 
@@ -7,6 +7,17 @@ interface IOptions {
     value: string
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+createStyles({
+  formControl: {
+    minWidth: 120,
+    width:`100%`,
+    marginTop: 8,
+    marginBottom: 8
+  },
+}),
+);
+
 type SelectProps = FieldRenderProps<SelectProps, HTMLElement>;
 export const MightSelect = (props: SelectProps) => {
     const {
@@ -14,34 +25,32 @@ export const MightSelect = (props: SelectProps) => {
         meta,
         color,
         required,
-        fullWidth = true,
         helperText,
-        defaultValue = {label: 'None', value: ""},
-        showError = showErrorOnChange,
         label,
+        defaultValue = {label, value: ""},
+        showError = showErrorOnChange,
         options = [],
         ...rest
     } = props;
+
+
+    const classes = useStyles();
 
     const mergedValue: IOptions[] = [defaultValue, ...options]
 
     const isError = showError({meta});
     return (
-        <FormControl
-            component="fieldset"
-            fullWidth={fullWidth}
-            style={{marginTop: 8, marginBottom: 8}}>
-
-            <InputLabel>{label}</InputLabel>
-
-            {isError}
-
-            <Select
+    <FormControl 
+        variant="outlined"
+        className={classes.formControl}>
+        <InputLabel id="demo-simple-select-outlined-label">{label}</InputLabel>
+        <Select
                 name={name}
                 value={value}
                 displayEmpty
                 onChange={onChange}
                 required={required}
+                label={label}
                 {...rest}>
                 {
                     mergedValue.map(
@@ -50,6 +59,7 @@ export const MightSelect = (props: SelectProps) => {
                     )
                 }
             </Select>
+            {isError}
         </FormControl>
     )
 }
