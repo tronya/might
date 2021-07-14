@@ -15,6 +15,7 @@ import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 import reducers from './store/reducer';
 import {TableView} from "./views/table/Table";
+import TargetView from "./views/target/target";
 
 const store = createStore(
     reducers,
@@ -50,6 +51,9 @@ function App() {
                             </Route>
                             <Route path="/table">
                                 <TableView/>
+                            </Route>
+                            <Route path="/target">
+                                <TargetView/>
                             </Route>
                         </Switch>
                     </Box>

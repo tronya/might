@@ -7,20 +7,7 @@ import {StepperButtons} from "../stepperButtons/StepperButtons";
 import {useHistory} from "react-router-dom";
 import {IState} from "../../../store/state";
 import {MightRadioButton} from "../../../components/atoms/MightRadioButton";
-
-const validate = (values: { direction: string; twist: string; }) => {
-    const errors: { direction: string | undefined, twist: string | undefined } = {
-        direction: undefined,
-        twist: undefined
-    };
-    if (!values.direction) {
-        errors.direction = 'Required';
-    }
-    if (!values.twist) {
-        errors.twist = 'Required';
-    }
-    return errors;
-};
+import {Validate} from '../../../helpers/validate';
 
 export const RifleStep = () => {
     const dispatch = useDispatch()
@@ -36,7 +23,7 @@ export const RifleStep = () => {
     return (
         <Form
             onSubmit={onSubmit}
-            validate={validate}
+            validate={Validate}
             initialValues={formValues}
             render={props => (
                 <form onSubmit={props.handleSubmit} noValidate autoComplete="off">
@@ -60,7 +47,6 @@ export const RifleStep = () => {
                         color="secondary"
                         label="Твіст"
                         placeholder=""
-                        required
                         component={MightInput}
                     />
                     <StepperButtons disabled={props.valid}/>

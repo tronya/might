@@ -5,6 +5,7 @@ import {TableModel} from "../../models/table.model";
 import {IState} from "../../store/state";
 import CustomButton from "../../components/atoms/Button";
 import {ITableAction, SAVE_TABLE_VALUES} from "../../store/reducer/tableReducer";
+import { useHistory } from "react-router-dom";
 
 function createData(
     distance: number,
@@ -27,13 +28,12 @@ function getRandomInt(max: number) {
 }
 
 export const TableView = () => {
-
-    // const dispatch = useDispatch();
-    // dispatch<ITableAction>({type: SAVE_TABLE_VALUES, payload: rows})
     const dispatch = useDispatch();
+    const create = () => dispatch<ITableAction>({type: SAVE_TABLE_VALUES, payload: createData(getRandomInt(1000), getRandomInt(8), getRandomInt(10), getRandomInt(20), getRandomInt(50))})
+    const history = useHistory();
     const addItem = () => {
-        const row = createData(getRandomInt(1000), getRandomInt(8), getRandomInt(10), getRandomInt(20), getRandomInt(50))
-        dispatch<ITableAction>({type: SAVE_TABLE_VALUES, payload: row})
+        create();
+        history.push('/target')
     }
     const tableValues: TableModel[] = useSelector((state: IState) => state.table);
 
