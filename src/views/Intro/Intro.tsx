@@ -69,12 +69,12 @@ export function Intro() {
 
     const handleClick = () => history.push(`/stepper/rifle`);
     useEffect(() => {
-        //let timer = setTimeout(() => handleClick(), 5000);
+        let timer = setTimeout(() => handleClick(), 5000);
         let progresInterval = setInterval(() => {
             progress += 300;
         }, 300);
         return () => {
-            // clearTimeout(timer);
+            clearTimeout(timer);
             clearInterval(progresInterval);
         }
     })
