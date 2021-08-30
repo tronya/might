@@ -38,7 +38,7 @@ export const TableView = () => {
     const tableValues: TableModel[] = useSelector((state: IState) => state.table);
 
     return (
-        <Box>
+        <Box width="100%">
             <Box flexGrow='1'>
                 <Typography variant='h4'>Таблиця</Typography>
             </Box>

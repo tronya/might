@@ -1,67 +1,92 @@
-import {Box, createStyles, makeStyles, Theme, Typography} from "@material-ui/core";
-import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import {Box, createStyles, LinearProgress, makeStyles, Theme, Typography, withStyles} from "@material-ui/core";
+import {useEffect} from "react";
+import {useHistory} from "react-router-dom";
 import logo from '../../assets/logo.png';
-import { StepperEnum } from "../../models/stepper.enum";
 
 const styles = makeStyles((theme: Theme) => createStyles({
-    wrapper:{
-display:'flex',
-alignItems:'center',
-    },
-  logo: {
-    left: '-20px',
-    position: 'relative'
-  },
-  text:{
-      color:'#FDCC00'
-  },
-  heading:{
-      fontWeight:'bold',
-  },
-  secondaryText:{
-      borderBottom: '1px solid #FDCC00',
-  }
-}),
+        wrapper: {
+            display: 'flex',
+            alignItems: 'center',
+        },
+        logo: {
+            left: '-20px',
+            position: 'relative'
+        },
+        text: {
+            color: '#FDCC00'
+        },
+        heading: {
+            fontWeight: 'bold',
+        },
+        secondaryText: {
+            borderBottom: '1px solid #FDCC00',
+        }
+    }),
 );
 
+const BorderLinearProgress = withStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            height: 10,
+            borderRadius: 5,
+            position: "fixed",
+            left: 0,
+            right: 0,
+            bottom: 0,
+        },
+        colorPrimary: {
+            backgroundColor: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
+        },
+        bar: {
+            borderRadius: 5,
+            backgroundColor: '#1a90ff',
+        },
+    }),
+)(LinearProgress);
 
 const LogoBlock = () => {
     const classes = styles();
-    return(
-        <Box >
-        <img src={logo}  className={classes.logo} />
-    </Box>
+    return (
+        <Box>
+            <img src={logo} className={classes.logo} alt="logo"/>
+        </Box>
     )
 }
 
 const IntroText = () => {
     const s = styles();
-    return(
-    <Box flexGrow='1' className={s.text}>
-    <Typography variant='h2' className={s.heading}>Міць</Typography>
-    <Typography variant='subtitle2' className={s.secondaryText}>В сильних руках, гвинтівка та штик.</Typography>
-</Box>
-)
-    }
+    return (
+        <Box flexGrow='1' className={s.text}>
+            <Typography variant='h2' className={s.heading}>Міць</Typography>
+            <Typography variant='subtitle2' className={s.secondaryText}>В сильних руках, гвинтівка та штик.</Typography>
+        </Box>
+    )
+}
 
 export function Intro() {
     const history = useHistory();
+    let progress = 0;
 
-    const handleClick= () => history.push(`/stepper/rifle`);
-    const time = useEffect(() => {
-        let timer1 = setTimeout(() => handleClick(), 5000);
+    const handleClick = () => history.push(`/stepper/rifle`);
+    useEffect(() => {
+        //let timer = setTimeout(() => handleClick(), 5000);
+        let progresInterval = setInterval(() => {
+            progress += 300;
+        }, 300);
         return () => {
-            clearTimeout(timer1);
+            // clearTimeout(timer);
+            clearInterval(progresInterval);
         }
-    }, [])
+    })
 
 
     const s = styles();
     return (
+
         <Box className={s.wrapper}>
-        <LogoBlock/>
-        <IntroText/>
+            <LogoBlock/>
+            <IntroText/>
+            <BorderLinearProgress variant="determinate" value={progress}/>
         </Box>
     )
 }

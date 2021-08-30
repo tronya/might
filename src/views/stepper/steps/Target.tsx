@@ -1,24 +1,18 @@
-import {
-    Box,
-    FormControl,
-    Input,
-    InputLabel, Slider, Typography
-} from "@material-ui/core";
-import { Field, Form } from "react-final-form";
-import { useSelector } from "react-redux";
-import { MightInput } from "../../../components/atoms/MightInput";
-import { MightSlider } from "../../../components/atoms/MightSlider";
+import {Field, Form} from "react-final-form";
+import {useSelector} from "react-redux";
+import {MightInput} from "../../../components/atoms/MightInput";
+import {MightSlider} from "../../../components/atoms/MightSlider";
 import {Validate} from '../../../helpers/validate';
-import { IState } from "../../../store/state";
-import { StepperButtons } from "../stepperButtons/StepperButtons";
+import {IState} from "../../../store/state";
+import {StepperButtons} from "../stepperButtons/StepperButtons";
 
-const TargetStep = ()  => {
+const TargetStep = () => {
     // const dispatch = useDispatch()
     // const history = useHistory();
 
     const onSubmit = (values: any) => {
         console.log(values);
-    
+
         // dispatch<IAction>({type: SAVE_FORM_VALUES, payload: values})
         // history.push(`/stepper/charge`)
     }
@@ -30,8 +24,7 @@ const TargetStep = ()  => {
             validate={Validate}
             initialValues={formValues}
             render={props => (
-                <form onSubmit={props.handleSubmit} >
-                    {console.log(props)}
+                <form onSubmit={props.handleSubmit}>
                     <Field
                         name="distance"
                         variant="outlined"
@@ -58,10 +51,10 @@ const TargetStep = ()  => {
                         label="Діапазон вітру:"
                         placeholder="800"
                         component={MightSlider}
-                    />      
+                    />
 
 
-<Field
+                    <Field
                         name="azimut"
                         variant="outlined"
                         color="secondary"
@@ -70,7 +63,7 @@ const TargetStep = ()  => {
                         component={MightInput}
                     />
 
-<Field
+                    <Field
                         name="latitude"
                         variant="outlined"
                         color="secondary"
@@ -78,7 +71,7 @@ const TargetStep = ()  => {
                         placeholder="800"
                         component={MightInput}
                     />
-<Field
+                    <Field
                         name="wind-direction"
                         variant="outlined"
                         color="secondary"
@@ -86,7 +79,7 @@ const TargetStep = ()  => {
                         placeholder="800"
                         component={MightInput}
                     />
-<Field
+                    <Field
                         name="gong-size"
                         variant="outlined"
                         color="secondary"
@@ -103,8 +96,8 @@ const TargetStep = ()  => {
                         component={MightInput}
                     />
                     <StepperButtons disabled={props.valid}/>
-                    </form>
-                    )}/>
+                </form>
+            )}/>
     )
 }
 export default TargetStep;

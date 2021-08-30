@@ -37,6 +37,8 @@ function App() {
                 height='100%'
                 boxSizing='border-box'
                 padding={2}
+                maxWidth={640}
+                margin="auto"
                 p={{xs: 2, sm: 3, md: 4}}
             >
                     <Box
