@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.scss';
 import {
     // BrowserRouter as Router, solution for GH-Pages
-    Switch,
-    Route
+    Route, Switch as RouterSwitcher
 } from "react-router-dom";
 import {HashRouter as Router} from 'react-router-dom'
 import {Intro} from "./views/Intro/Intro";
@@ -32,19 +31,19 @@ function App() {
     return (
         <Provider store={store}>
             <Router>
-            <Box
-                display="flex"
-                height='100%'
-                boxSizing='border-box'
-                padding={2}
-                maxWidth={640}
-                margin="auto"
-                p={{xs: 2, sm: 3, md: 4}}
-            >
+                <Box
+                    display="flex"
+                    height='100%'
+                    boxSizing='border-box'
+                    padding={2}
+                    maxWidth={640}
+                    margin="auto"
+                    p={{xs: 2, sm: 3, md: 4}}
+                >
                     <Box
                         className="wrapper"
                     >
-                        <Switch>
+                        <RouterSwitcher>
                             <Route exact path="/">
                                 <Intro/>
                             </Route>
@@ -57,10 +56,10 @@ function App() {
                             <Route path="/target">
                                 <TargetView/>
                             </Route>
-                        </Switch>
+                        </RouterSwitcher>
                     </Box>
-                
-            </Box>
+
+                </Box>
             </Router>
         </Provider>
     );

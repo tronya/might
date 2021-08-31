@@ -2,18 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
-import {CssBaseline, MuiThemeProvider} from "@material-ui/core";
+import {CssBaseline} from "@material-ui/core";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import {defaultTheme} from "./theme";
 import reportWebVitals from "./reportWebVitals";
+import ThemeProvider from "./components/atoms/ThemeProvider";
 
 ReactDOM.render(
-    <React.StrictMode>
-        <MuiThemeProvider theme={defaultTheme}>
-            <CssBaseline />
-            <App/>
-        </MuiThemeProvider>
-    </React.StrictMode>,
+    <ThemeProvider>
+        <CssBaseline/>
+        <App/>
+    </ThemeProvider>,
     document.getElementById('root')
 );
 

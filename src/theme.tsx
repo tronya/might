@@ -1,6 +1,7 @@
 import {createMuiTheme} from "@material-ui/core/styles";
+import {createContext} from "react";
 
-export const defaultTheme = createMuiTheme({
+export const darkTheme = createMuiTheme({
     typography: {
         fontFamily: 'Open Sans',
     },
@@ -22,3 +23,38 @@ export const defaultTheme = createMuiTheme({
         type: 'dark',
     }
 });
+
+export const lightTheme = createMuiTheme({
+    typography: {
+        fontFamily: 'Open Sans',
+    },
+    palette: {
+        background: {
+            default: "#000",
+        },
+        text: {
+            primary: 'rgba(255,255,255,1)',
+            secondary: 'rgba(255,255,255,.65)',
+        },
+        primary: {
+            main: '#eee',
+            contrastText: '#fff'
+        },
+        secondary: {
+            main: '#333',
+        },
+        type: 'dark',
+    }
+});
+
+export enum EThemeTypes {
+    'DARK' = "dark",
+    'LIGHT' = "light"
+}
+
+export const ThemeContext = createContext({
+        theme: EThemeTypes.DARK,
+        changeTheme: (event: any) => {
+        },
+    }
+)
