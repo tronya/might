@@ -14,7 +14,6 @@ const ThemeProvider = (props: ITheme) => {
     return (
         <ThemeContext.Provider value={{theme, changeTheme: callback}}>
             <MuiThemeProvider theme={theme === EThemeTypes.DARK ? darkTheme : lightTheme}>
-                <p>{theme}</p>
                 {props.children}
             </MuiThemeProvider>
         </ThemeContext.Provider>
