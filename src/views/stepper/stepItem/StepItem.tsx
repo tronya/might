@@ -1,5 +1,4 @@
 import './StepItem.scss'
-import React from "react";
 import {Box, Typography} from "@material-ui/core";
 import {StepContent} from "../../../models/step.model";
 import TopNavigation from '../../../components/navigation/topNavigation';

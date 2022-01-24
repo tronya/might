@@ -1,18 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './App';
-import {CssBaseline} from "@material-ui/core";
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import ReactDOM from "react-dom";
+import "./index.scss";
+import App from "./App";
+import { CssBaseline } from "@material-ui/core";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
-import ThemeProvider from "./components/atoms/ThemeProvider";
+import ThemeProvider from "./components/ui/Theme/ThemeProvider";
 
 ReactDOM.render(
-    <ThemeProvider>
-        <CssBaseline/>
-        <App/>
-    </ThemeProvider>,
-    document.getElementById('root')
+  <ThemeProvider>
+    <CssBaseline />
+    <App />
+  </ThemeProvider>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

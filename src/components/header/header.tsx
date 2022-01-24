@@ -1,5 +1,4 @@
 import {Link} from "react-router-dom";
-import React from "react";
 import './header.scss';
 import {createStyles, makeStyles, Theme} from "@material-ui/core";
 
