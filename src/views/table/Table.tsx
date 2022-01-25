@@ -16,30 +16,16 @@ import {
   SAVE_TABLE_VALUES,
 } from "../../store/reducer/tableReducer";
 import { useNavigate } from "react-router-dom";
+import { createData, getRandomInt } from "../../utils/utils";
+import { FC } from "react";
 
-function createData(
-  distance: number,
-  min: number | string = "-",
-  mid: number | string = "-",
-  max: number | string = "-",
-  horizont: number | string = "-"
-): TableModel {
-  return {
-    distance,
-    min,
-    mid,
-    max,
-    horizont,
-  };
-}
-
-function getRandomInt(max: number) {
-  return Math.floor(Math.random() * max);
-}
-
-export const TableView = () => {
+const TableView: FC = () => {
   const dispatch = useDispatch();
-  const create = () =>
+  const navigate = useNavigate();
+
+  const tableValues = useSelector((state: IState) => state.table);
+
+  const createItem = () =>
     dispatch<ITableAction>({
       type: SAVE_TABLE_VALUES,
       payload: createData(
@@ -50,12 +36,11 @@ export const TableView = () => {
         getRandomInt(50)
       ),
     });
-  const navigate = useNavigate();
+
   const addItem = () => {
-    create();
+    createItem();
     navigate("/target");
   };
-  const tableValues: TableModel[] = useSelector((state: IState) => state.table);
 
   return (
     <Box width="100%">
@@ -104,3 +89,5 @@ export const TableView = () => {
     </Box>
   );
 };
+
+export default TableView;

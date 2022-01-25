@@ -1,31 +1,19 @@
 /* eslint-disable react/prop-types */
 import {
-  createStyles,
   FormControl,
   InputLabel,
-  makeStyles,
   MenuItem,
   Select as SelectInput,
 } from "@material-ui/core";
 import { showErrorOnChange } from "../../../utils/utils";
 import { FieldRenderProps } from "react-final-form";
 import { FC } from "react";
+import useStyles from "./useStyles";
 
-interface IOptions {
+interface Option {
   label: string;
   value: string;
 }
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    formControl: {
-      minWidth: 120,
-      width: `100%`,
-      marginTop: 8,
-      marginBottom: 8,
-    },
-  })
-);
 
 type SelectProps = FieldRenderProps<SelectProps, HTMLElement>;
 
@@ -43,7 +31,7 @@ const Select: FC<SelectProps> = (props) => {
     ...rest
   } = props;
 
-  const mergedValue: IOptions[] = [defaultValue, ...options];
+  const mergedValue: Option[] = [defaultValue, ...options];
   const isError = showError({ meta });
 
   return (

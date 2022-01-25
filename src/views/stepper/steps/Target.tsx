@@ -3,7 +3,7 @@ import { Field, Form } from "react-final-form";
 import { useSelector } from "react-redux";
 import MightInput from "../../../components/ui/Input/Input";
 import MightSlider from "../../../components/ui/Slider/Slider";
-import { Validate } from "../../../helpers/validate";
+import { validate } from "../../../helpers/validate";
 import { IState } from "../../../store/state";
 import StepperButtons from "../stepperButtons/StepperButtons";
 
@@ -11,13 +11,14 @@ const TargetStep: FC = () => {
   const formValues = useSelector((state: IState) => state.userForm);
 
   const onSubmit = (values: Record<string, unknown>) => {
+    // eslint-disable-next-line no-console
     console.log(values);
   };
 
   return (
     <Form
       onSubmit={onSubmit}
-      validate={Validate}
+      validate={validate}
       initialValues={formValues}
       render={({ handleSubmit, valid }) => (
         <form onSubmit={handleSubmit}>

@@ -1,24 +1,22 @@
-import './StepItem.scss'
-import {Box, Typography} from "@material-ui/core";
-import {StepContent} from "../../../models/step.model";
-import TopNavigation from '../../../components/navigation/topNavigation';
+import { Box, Typography } from "@material-ui/core";
+import { FC } from "react";
 
-export function StepItem({title, description, content}: StepContent) {
+import { StepContent } from "../../../models/step.model";
+import TopNavigation from "../../../components/navigation/topNavigation";
 
-    return (
-        <div className="step">
-            <TopNavigation/>
-            <Box flexGrow='1'>
-                <Typography variant='h4'>{title}</Typography>
-            </Box>
-            <Typography color="textSecondary">{description}</Typography>
-            <Box
-                display="flex"
-                flexDirection="column"
-                paddingTop="2rem"
-            >
-                {content}
-            </Box>
-        </div>
-    )
-}
+import "./StepItem.scss";
+
+const StepItem: FC<StepContent> = ({ title, description, content }) => (
+  <div className="step">
+    <TopNavigation />
+    <Box flexGrow="1">
+      <Typography variant="h4">{title}</Typography>
+    </Box>
+    <Typography color="textSecondary">{description}</Typography>
+    <Box display="flex" flexDirection="column" paddingTop="2rem">
+      {content}
+    </Box>
+  </div>
+);
+
+export default StepItem;

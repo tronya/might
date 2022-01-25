@@ -9,7 +9,7 @@ import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import reducers from "./store/reducer";
-import { TableView } from "./views/table/Table";
+import TableView from "./views/table/Table";
 import TargetView from "./views/target/target";
 import { FC } from "react";
 

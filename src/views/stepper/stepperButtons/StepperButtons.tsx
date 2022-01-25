@@ -1,8 +1,8 @@
-import Button from "@material-ui/core/Button";
-import CustomButton from "../../../components/ui/Button/Button";
-import { Grid } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { FC } from "react";
+
+import CustomButton from "../../../components/ui/Button/Button";
 
 interface StepperButtonsProps {
   disabled: boolean;

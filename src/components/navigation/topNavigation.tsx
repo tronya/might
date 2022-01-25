@@ -31,7 +31,7 @@ const TopNavigation: FC = (props: HTMLAttributes<Element>) => {
         ((event as KeyboardEvent).key === "Tab" ||
           (event as KeyboardEvent).key === "Shift")
       ) {
-        return;
+        return null;
       }
 
       setState({ ...state, [anchor]: open });

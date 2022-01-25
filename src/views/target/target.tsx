@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { StepItem } from "../stepper/stepItem/StepItem";
+import StepItem from "../stepper/stepItem/StepItem";
 import TargetStep from "../stepper/steps/Target";
 
 const targetPageProps = {
@@ -8,8 +8,8 @@ const targetPageProps = {
     "Параметри цілі задаються максимально точно для точних поправок корегування вогню.",
 };
 
-const TargetView: FC = () => {
-  return <StepItem {...targetPageProps} content={<TargetStep />} />;
-};
+const TargetView: FC = () => (
+  <StepItem {...targetPageProps} content={<TargetStep />} />
+);
 
 export default TargetView;

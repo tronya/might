@@ -7,7 +7,7 @@ import StepperButtons from "../stepperButtons/StepperButtons";
 import { useNavigate } from "react-router-dom";
 import { IState } from "../../../store/state";
 import MightRadioButton from "../../../components/ui/Radio/RadioButton";
-import { Validate } from "../../../helpers/validate";
+import { validate } from "../../../helpers/validate";
 import { FC } from "react";
 
 const RifleStep: FC = () => {
@@ -23,7 +23,7 @@ const RifleStep: FC = () => {
   return (
     <Form
       onSubmit={onSubmit}
-      validate={Validate}
+      validate={validate}
       initialValues={formValues}
       render={({ valid, handleSubmit }) => (
         <form onSubmit={handleSubmit} noValidate autoComplete="off">

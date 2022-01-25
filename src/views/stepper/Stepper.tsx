@@ -1,11 +1,12 @@
 import RifleStep from "./steps/Rifle";
-import { StepItem } from "./stepItem/StepItem";
+import StepItem from "./stepItem/StepItem";
 import { useParams } from "react-router-dom";
 import { StepperEnum } from "../../models/stepper.model";
 import AmmunitionStep from "./steps/Ammunition";
 import OpticsStep from "./steps/Optics";
+import { FC } from "react";
 
-function getStepContent(stepIndex: number) {
+const getStepContent = (stepIndex: number) => {
   switch (stepIndex) {
     case 0:
       return {
@@ -28,12 +29,6 @@ function getStepContent(stepIndex: number) {
           "Введення налаштувань для оптичного прицілу для коректного відображення параметрів введення в коректних одиницях.",
         content: <OpticsStep />,
       };
-    // case 2:
-    //     return <OpticsStep/>;
-    // case 3:
-    //     return <WeatherStep/>;
-    // case 4:
-    //     return <GoalStep/>;
     default:
       return {
         title: "",
@@ -41,9 +36,9 @@ function getStepContent(stepIndex: number) {
         content: null,
       };
   }
-}
+};
 
-export default function StepperView() {
+const StepperView: FC = () => {
   const { id } = useParams<{ id: string }>();
 
   if (id) {
@@ -61,4 +56,6 @@ export default function StepperView() {
   }
 
   return null;
-}
+};
+
+export default StepperView;

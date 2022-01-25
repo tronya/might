@@ -20,8 +20,10 @@ const Slider: FC<SliderProps> = (props) => {
     event: ChangeEvent<Record<string, unknown>>,
     newValue: number | number[]
   ) => {
-    setValue(newValue as number[]);
-    onChange(newValue);
+    if (Array.isArray(newValue)) {
+      setValue(newValue);
+      onChange(newValue);
+    }
   };
 
   return (
